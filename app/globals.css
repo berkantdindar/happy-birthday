@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f3f0dc;
+  --foreground: #20372b;
+  --leaf: #20372b;
+  --coral: #e95743;
+  --blush: #f3a398;
+  --sunshine: #f6d86d;
+  --paper: #fffdf3;
 }
 
 @theme inline {
@@ -12,15 +17,954 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button,
+a {
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.birthday-page {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  padding: 0 7.2vw;
+  background-color: var(--background);
+  background-image: radial-gradient(#20372b12 0.7px, transparent 0.7px);
+  background-size: 7px 7px;
+}
+
+.page-grain {
+  background: linear-gradient(90deg, transparent 49.9%, #20372b0b 50%, transparent 50.1%);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.site-header,
+.hero,
+.countdown-section,
+.little-note,
+.site-footer {
+  margin-inline: auto;
+  max-width: 1320px;
+  position: relative;
+  z-index: 1;
+}
+
+.site-header {
+  align-items: center;
+  border-bottom: 1px solid #20372b35;
+  display: flex;
+  height: 78px;
+  justify-content: space-between;
+}
+
+.wordmark {
+  align-items: center;
+  display: flex;
+  font-size: 13px;
+  font-weight: 800;
+  gap: 9px;
+  letter-spacing: 0.08em;
+}
+
+.wordmark-heart {
+  color: var(--coral);
+  font-size: 22px;
+}
+
+.header-note,
+.header-date,
+.eyebrow,
+.note-label,
+.site-footer,
+.countdown-footer {
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+}
+
+.header-date span {
+  color: var(--coral);
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.hero {
+  align-items: center;
+  display: grid;
+  gap: 6vw;
+  grid-template-columns: 1fr 0.94fr;
+  min-height: 580px;
+  padding: 56px 0 70px;
+}
+
+.hero-copy {
+  animation: rise-in 700ms both;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  align-items: center;
+  color: #45614d;
+  display: flex;
+  gap: 10px;
+  margin: 0 0 22px;
+}
+
+.eyebrow-line {
+  background: var(--coral);
+  display: inline-block;
+  height: 2px;
+  width: 25px;
+}
+
+.hero h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(64px, 7.4vw, 112px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.hero h1 span {
+  color: var(--coral);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.hero-description {
+  color: #536356;
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 26px 0 25px;
+  max-width: 390px;
+}
+
+.letter-link {
+  align-items: center;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 700;
+  gap: 11px;
+}
+
+.letter-link-icon {
+  align-items: center;
+  border: 1px solid var(--leaf);
+  border-radius: 50%;
+  display: inline-flex;
+  height: 33px;
+  justify-content: center;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+  width: 33px;
+}
+
+.letter-link:hover .letter-link-icon {
+  background: var(--leaf);
+  color: var(--paper);
+  transform: translateY(3px);
+}
+
+.handwritten-note {
+  color: var(--coral);
+  display: block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.2;
+  margin: 22px 0 0 min(42%, 240px);
+  transform: rotate(-8deg);
+}
+
+.handwritten-note span {
+  display: inline-block;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 25px;
+  margin-left: 7px;
+  transform: rotate(20deg);
+}
+
+.hero-art {
+  animation: rise-in 850ms 100ms both;
+  min-height: 445px;
+  position: relative;
+}
+
+.photo-frame {
+  background: var(--paper);
+  box-shadow: 0 18px 50px #20372b20;
+  left: 8%;
+  padding: 12px 12px 48px;
+  position: absolute;
+  top: 14px;
+  transform: rotate(3deg);
+  width: min(84%, 420px);
+}
+
+.photo-scene {
+  aspect-ratio: 0.94;
+  background-color: #a8b995;
+  background-image: linear-gradient(180deg, #172d1e00 50%, #172d1e65), url("/couple.jpg");
+  background-position: center;
+  background-size: cover;
+  filter: saturate(0.86);
+}
+
+.photo-caption {
+  bottom: 15px;
+  color: #50604d;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-style: italic;
+  left: 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+
+.photo-sticker {
+  align-items: center;
+  background: var(--sunshine);
+  border-radius: 50%;
+  color: var(--leaf);
+  display: flex;
+  font-size: 25px;
+  height: 58px;
+  justify-content: center;
+  position: absolute;
+  right: -22px;
+  top: 30px;
+  transform: rotate(12deg);
+  width: 58px;
+}
+
+.orbit-stamp {
+  align-items: center;
+  background: var(--coral);
+  border: 1px solid var(--background);
+  border-radius: 50%;
+  color: #fff9e8;
+  display: flex;
+  flex-direction: column;
+  height: 126px;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 70%;
+  transform: rotate(9deg);
+  width: 126px;
+}
+
+.orbit-stamp span {
+  font-size: 7px;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+}
+
+.orbit-stamp strong {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.art-spark {
+  color: var(--coral);
+  position: absolute;
+}
+
+.art-spark-one {
+  font-size: 29px;
+  left: 0;
+  top: 9%;
+}
+
+.art-spark-two {
+  color: #d3a52b;
+  font-size: 31px;
+  right: 8%;
+  top: 8%;
+}
+
+.floating-heart {
+  animation: float-heart 4s ease-in-out infinite;
+  color: var(--blush);
+  font-size: 21px;
+  position: absolute;
+}
+
+.floating-heart-one {
+  left: 12%;
+  top: 70%;
+}
+
+.floating-heart-two {
+  animation-delay: -1.8s;
+  font-size: 13px;
+  right: 19%;
+  top: 30%;
+}
+
+.countdown-section {
+  align-items: center;
+  background: var(--leaf);
+  border: 1px solid #ffffff20;
+  box-shadow: 0 18px 45px #20372b24;
+  color: var(--paper);
+  display: grid;
+  gap: 25px;
+  grid-template-columns: 0.85fr 1.35fr;
+  margin-bottom: 54px;
+  overflow: hidden;
+  padding: 31px 5.2%;
+}
+
+.countdown-section::before,
+.countdown-section::after {
+  color: var(--coral);
+  font-size: 27px;
+  opacity: 0.9;
+  position: absolute;
+}
+
+.countdown-section::before {
+  content: "✦";
+  left: 2.4%;
+  top: 15%;
+}
+
+.countdown-section::after {
+  bottom: 13%;
+  content: "♡";
+  right: 2.5%;
+}
+
+.countdown-heading .eyebrow {
+  color: #d5e3cb;
+  margin-bottom: 9px;
+}
+
+.countdown-heading h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.countdown-heading {
+  position: relative;
+}
+
+.countdown-heading::after {
+  background: var(--coral);
+  content: "";
+  display: block;
+  height: 3px;
+  margin-top: 17px;
+  transform: rotate(-2deg);
+  width: 65px;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.time-unit {
+  align-items: center;
+  /* border-left: 1px solid #ffffff42; */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+  padding: 0 10px;
+}
+
+.time-unit:not(:last-child)::after {
+  color: var(--coral);
+  content: ":";
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  position: absolute;
+  right: -5px;
+  top: 7px;
+}
+
+.time-value {
+  font-variant-numeric: tabular-nums;
+  color: var(--paper);
+  font-size: clamp(34px, 3.8vw, 51px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.time-label {
+  color: #d5e3cb;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.countdown-footer {
+  align-items: center;
+  color: #d5e3cb;
+  display: flex;
+  gap: 13px;
+  grid-column: 1 / -1;
+  justify-content: center;
+  margin-top: -5px;
+}
+
+.footer-heart {
+  color: var(--sunshine);
+  font-size: 11px;
+}
+
+.birthday-message {
+  align-items: center;
+  color: var(--sunshine);
+  display: flex;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-style: italic;
+  gap: 16px;
+  grid-column: 2;
+  line-height: 1.45;
+}
+
+.birthday-message p {
+  margin: 0;
+}
+
+.birthday-message span {
+  color: var(--coral);
+  font-size: 28px;
+}
+
+.little-note {
+  align-items: center;
+  border-bottom: 1px solid #20372b35;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 35px;
+  justify-content: space-between;
+  padding: 0 0 27px;
+}
+
+.note-label {
+  color: #70816e;
+}
+
+.note-button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  gap: 18px;
+  padding: 5px 0;
+}
+
+.note-button span {
+  align-items: center;
+  border: 1px solid var(--coral);
+  border-radius: 50%;
+  color: var(--coral);
+  display: inline-flex;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 20px;
+  height: 30px;
+  justify-content: center;
+  line-height: 1;
+  width: 30px;
+}
+
+.love-note {
+  animation: rise-in 300ms both;
+  background: #f8e6b9;
+  color: #344c3b;
+  flex-basis: 100%;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 700px;
+  padding: 20px 24px;
+}
+
+.site-footer {
+  align-items: center;
+  color: #70816e;
+  display: flex;
+  justify-content: space-between;
+  padding: 23px 0 30px;
+}
+
+.site-footer span:nth-child(2) {
+  color: var(--coral);
+  font-size: 15px;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-heart {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translateY(0) rotate(-10deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) rotate(8deg);
+  }
+}
+
+@media (min-width: 1450px) {
+  .birthday-page {
+    padding-inline: max(7.2vw, calc((100vw - 1320px) / 2));
+  }
+}
+
+@media (max-width: 760px) {
+  .birthday-page {
+    padding-inline: 22px;
+  }
+
+  .site-header {
+    height: 66px;
+  }
+
+  .header-note {
+    display: none;
+  }
+
+  .hero {
+    gap: 20px;
+    grid-template-columns: 1fr;
+    padding: 53px 0 34px;
+  }
+
+  .hero h1 {
+    font-size: clamp(62px, 15vw, 88px);
+  }
+
+  .hero-description {
+    font-size: 14px;
+    margin: 21px 0;
+    max-width: 340px;
+  }
+
+  .handwritten-note {
+    margin-top: 19px;
+  }
+
+  .hero-art {
+    margin: 0 auto;
+    min-height: 380px;
+    width: min(100%, 470px);
+  }
+
+  .photo-frame {
+    left: 9%;
+    top: 7px;
+    width: 79%;
+  }
+
+  .photo-scene {
+    aspect-ratio: 1.08;
+  }
+
+  .orbit-stamp {
+    height: 108px;
+    right: 1%;
+    top: 67%;
+    width: 108px;
+  }
+
+  .countdown-section {
+    gap: 20px;
+    grid-template-columns: 1fr;
+    margin-bottom: 38px;
+    padding: 25px 20px 20px;
+  }
+
+  .countdown-heading h2 {
+    font-size: 25px;
+  }
+
+  .time-unit:first-child {
+    border-left: 0;
+  }
+
+  .time-unit {
+    padding-inline: 4px;
+  }
+
+  .time-value {
+    font-size: clamp(29px, 8vw, 38px);
+  }
+
+  .countdown-section::before {
+    left: 4%;
+    top: 7%;
+  }
+
+  .countdown-section::after {
+    bottom: 7%;
+    right: 4%;
+  }
+
+  .time-label {
+    font-size: 8px;
+  }
+
+  .countdown-footer {
+    font-size: 8px;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .birthday-message {
+    font-size: 17px;
+    grid-column: 1;
+  }
+
+  .little-note {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  .site-footer {
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Glassmorphism visual direction */
+:root {
+  --background: #160f23;
+  --foreground: #fff7f4;
+  --leaf: #fff7f4;
+  --coral: #ff8a9c;
+  --blush: #f6b5d0;
+  --sunshine: #ffd98a;
+  --paper: #fffaf7;
+}
+
+body {
+  background: #160f23;
+}
+
+.birthday-page {
+  background-color: #160f23;
+  background-image:
+    linear-gradient(116deg, transparent 0 35%, #ff8a9c08 35.1% 35.35%, transparent 35.45%),
+    linear-gradient(298deg, transparent 0 61%, #f6b5d00b 61.1% 61.3%, transparent 61.4%),
+    linear-gradient(135deg, #28183b 0%, #160f23 44%, #24122c 100%);
+  color: var(--foreground);
+}
+
+.birthday-page::before,
+.birthday-page::after {
+  border: 1px solid #ffb0c322;
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  transform: rotate(26deg);
+}
+
+.birthday-page::before {
+  height: 520px;
+  left: -300px;
+  top: 13%;
+  width: 520px;
+}
+
+.birthday-page::after {
+  height: 680px;
+  right: -440px;
+  top: 32%;
+  width: 680px;
+}
+
+.page-grain {
+  background: repeating-linear-gradient(112deg, transparent 0 45px, #ffffff05 46px, transparent 47px 90px);
+  opacity: 0.65;
+}
+
+.site-header {
+  border-bottom-color: #ffffff1f;
+}
+
+.wordmark,
+.header-note,
+.header-date {
+  color: #fff7f4;
+}
+
+.wordmark-heart,
+.header-date span {
+  color: var(--coral);
+}
+
+.hero {
+  min-height: 620px;
+  padding-bottom: 84px;
+  padding-top: 76px;
+}
+
+.eyebrow,
+.header-note,
+.header-date,
+.note-label,
+.site-footer,
+.countdown-footer {
+  color: #efcbd7;
+}
+
+.eyebrow-line {
+  background: var(--coral);
+}
+
+.hero h1 {
+  color: #fff8f5;
+  font-size: clamp(66px, 7.7vw, 118px);
+  text-shadow: 0 10px 36px #00000028;
+}
+
+.hero h1 span {
+  color: var(--coral);
+  text-shadow: 0 7px 28px #ff8a9c35;
+}
+
+.hero-description {
+  color: #decbd4;
+}
+
+.letter-link {
+  color: #fff8f5;
+}
+
+.letter-link-icon {
+  border-color: #ffb3bf;
+  background: #ffffff0b;
+  box-shadow: inset 0 0 16px #ffffff0a;
+}
+
+.letter-link:hover .letter-link-icon {
+  background: var(--coral);
+  color: #160f23;
+}
+
+.handwritten-note {
+  color: #ffb5c3;
+}
+
+.hero-art {
+  min-height: 480px;
+}
+
+.photo-frame {
+  background: #ffffff14;
+  border: 1px solid #ffffff32;
+  box-shadow: 0 28px 70px #00000052, inset 0 1px 0 #ffffff28;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 15px 15px 52px;
+  transform: rotate(3deg);
+}
+
+.photo-scene {
+  background-image: linear-gradient(180deg, #160f2300 42%, #160f239c), url("/couple.jpg");
+  border: 1px solid #ffffff38;
+  filter: saturate(0.78) contrast(1.05);
+}
+
+.photo-caption {
+  color: #fff0f2;
+}
+
+.photo-sticker {
+  background: #ffd98acc;
+  box-shadow: 0 8px 20px #00000035;
+}
+
+.orbit-stamp {
+  background: #ff7188d9;
+  border-color: #ffffff57;
+  box-shadow: 0 18px 36px #0000003d, inset 0 1px 0 #ffffff44;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.art-spark-one,
+.art-spark-two,
+.floating-heart {
+  text-shadow: 0 0 18px #ff8a9c9e;
+}
+
+.countdown-section {
+  background: #ffffff0d;
+  border: 1px solid #ffffff2d;
+  box-shadow: 0 28px 70px #0000003d, inset 0 1px 0 #ffffff24;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  color: #fff7f4;
+  min-height: 205px;
+  padding-bottom: 32px;
+  padding-top: 35px;
+}
+
+.countdown-section::before,
+.countdown-section::after {
+  color: #ff9aac;
+}
+
+.countdown-heading .eyebrow {
+  color: #efcbd7;
+}
+
+.countdown-heading h2 {
+  color: #fff7f4;
+  font-size: 30px;
+}
+
+.countdown-heading::after {
+  background: var(--coral);
+  box-shadow: 0 0 14px #ff8a9c9e;
+}
+
+.time-unit {
+  border-left-color: #ffffff38;
+}
+
+.time-unit:not(:last-child)::after {
+  color: var(--coral);
+  text-shadow: 0 0 12px #ff8a9c8c;
+}
+
+.time-value {
+  color: #fff7f4;
+  text-shadow: 0 4px 20px #ff8a9c31;
+}
+
+.time-label,
+.countdown-footer {
+  color: #efcbd7;
+}
+
+.footer-heart {
+  color: var(--coral);
+  text-shadow: 0 0 12px #ff8a9c9e;
+}
+
+.little-note {
+  border-bottom-color: #ffffff24;
+}
+
+.note-label {
+  color: #caaebb;
+}
+
+.note-button {
+  color: #fff7f4;
+}
+
+.note-button span {
+  border-color: var(--coral);
+  box-shadow: 0 0 14px #ff8a9c40;
+  color: var(--coral);
+}
+
+.love-note {
+  background: #ffffff12;
+  border: 1px solid #ffffff2d;
+  box-shadow: inset 0 1px 0 #ffffff1c;
+  color: #ffe9ef;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.site-footer {
+  color: #caaebb;
+}
+
+.site-footer span:nth-child(2) {
+  color: var(--coral);
+  text-shadow: 0 0 14px #ff8a9c9e;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    min-height: 0;
+    padding-bottom: 54px;
+    padding-top: 53px;
+  }
+
+  .hero h1 {
+    font-size: clamp(62px, 15vw, 88px);
+  }
+
+  .hero-art {
+    min-height: 410px;
+  }
+
+  .countdown-section {
+    min-height: 0;
+    padding-bottom: 24px;
+    padding-top: 28px;
+  }
+
+  .countdown-heading h2 {
+    font-size: 26px;
+  }
 }
