@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "İyi ki Doğdun, Güzelim",
-  description: "3 Ekim'e kalan zamanı birlikte sayalım. İyi ki varsın, sevgilim.",
+  description: "4 Ekim'e kalan zamanı birlikte sayalım. İyi ki varsın, sevgilim.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

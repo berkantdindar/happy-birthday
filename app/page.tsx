@@ -10,9 +10,9 @@ type Countdown = {
 };
 
 function getBirthdayState(now: Date): { isBirthday: boolean; countdown: Countdown } {
-  const birthday = new Date(now.getFullYear(), 9, 3);
+  const birthday = new Date(now.getFullYear(), 9, 4);
   const isBirthday =
-    now.getMonth() === 9 && now.getDate() === 3;
+    now.getMonth() === 9 && now.getDate() === 4;
 
   if (!isBirthday && birthday.getTime() < now.getTime()) {
     birthday.setFullYear(birthday.getFullYear() + 1);
@@ -62,12 +62,12 @@ export default function Home() {
           <span>İKİMİZ</span>
         </a>
         <span className="header-note">SANA, EN GÜZELİNE</span>
-        <span className="header-date">03 EKİM <span>♡</span></span>
+        <span className="header-date">04 EKİM <span>♡</span></span>
       </header>
 
       <section className="hero" id="top" aria-labelledby="birthday-title">
         <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-line" /> 3 EKİM’E KÜÇÜK BİR NOT</p>
+          <p className="eyebrow"><span className="eyebrow-line" /> 4 EKİM’E KÜÇÜK BİR NOT</p>
           <h1 id="birthday-title">İyi ki<br />benim <span>güzelim.</span></h1>
           <p className="hero-description">
             Takvimde bir gün, benim için koca bir dünya. Senin gününe kavuşmak için
@@ -122,7 +122,7 @@ export default function Home() {
           </div>
         )}
         <div className="countdown-footer">
-          <span>3 EKİM</span>
+          <span>4 EKİM</span>
           <span className="footer-heart" aria-hidden="true">♥</span>
           <span>HER ŞEY SENİNLE GÜZEL</span>
         </div>
@@ -150,7 +150,7 @@ export default function Home() {
       <footer className="site-footer">
         <span>SEVGİYLE, HEP SENİNLE</span>
         <span aria-hidden="true">♥</span>
-        <span>03 / 10</span>
+        <span>04 / 10</span>
       </footer>
     </main>
   );
